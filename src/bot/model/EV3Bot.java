@@ -56,5 +56,11 @@ public void driveRoom()
 	{
 		botPilot.travel(254.00);
 	}
+	
+	private void displayMessage()
+	{
+		LCD.drawString(botMessage,xPosition,yPosition);
+		
+	}
 }
 }
