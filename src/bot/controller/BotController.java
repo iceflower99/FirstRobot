@@ -9,10 +9,66 @@ public class BotController
 {
    
 	private String message;
-	private int xPositon,yPosition;
+	private int xPosition,yPosition;
 	private long waitTime;
+	
+	private EV3Bot myBot;
+	
+	public BotController()
+	{
+	this.xPosition= 50;	
+	this.yPosition=100;
+	this.waitTime=4000;
+	this.message = "Something about a robot";
+	
+	myBot = new EV3Bot();
+	}
+	
 	public void start()
     {
-    	
+    	LCD.drawString(message,xPosition,yPosition);
+        Delay.msDelay(waitTime);
+        myBot.driveRoom();
     }
-}
+
+	public String getMessage()
+	{
+		return message;
+	}
+
+	public int getxPosition()
+	{
+		return xPosition;
+	}
+
+	public int getyPosition()
+	{
+		return yPosition;
+	}
+
+	public long getWaitTime()
+	{
+		return waitTime;
+	}
+
+	public void setMessage(String message)
+	{
+		this.message = message;
+	}
+
+	public void setxPosition(int xPosition)
+	{
+		this.xPosition = xPosition;
+	}
+
+	public void setyPosition(int yPosition)
+	{
+		this.yPosition = yPosition;
+	}
+
+	public void setWaitTime(long waitTime)
+	{
+		this.waitTime = waitTime;
+	}
+
+	}
