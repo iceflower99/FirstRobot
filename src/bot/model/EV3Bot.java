@@ -19,12 +19,18 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 public class EV3Bot
 {
 
-private MovePilot botPilot;
+ private MovePilot botPilot;
 	
  private EV3UltrasonicSensor distanceSensor; 
  private EV3TouchSensor backTouch;
  private float [] ultrasonicSamples;
  private float [] touchSamples;
+ private String  botMessage;
+ private int xPosition;
+ private int yPosition;
+ private int waitTime;
+ 
+ 
 	
  public EV3Bot()
  {
@@ -35,7 +41,8 @@ private MovePilot botPilot;
 	 distanceSensor = new EV3UltrasonicSensor(LocalEV3.get().getPort("S1"));
 	 backTouch = new EV3TouchSensor(LocalEV3.get().getPort("S2"));
 	 
-	 
+	 distanceSensor = new EV3UltrasonicSensor(LocalEV3.get().getPort("S1"));
+	 backTouch = new EV3TouchSensor(LocalEV3.get().getPort("S2"));
 	 
 	 setupPilot();
 	 
@@ -43,6 +50,13 @@ private MovePilot botPilot;
 	 
  }
  
+ private void setupPilot()
+ {
+	 Wheel leftWheel= WheeledChassis.modelWheel(Motor.A, 43.3).offset(-72);
+	 Wheel rightWheel=WheeledChassis.modelWheel(Motor.B, 43.3).offset(-72);
+	 WheeledChassis  chassis = new WheeledChassis(new Wheel[]{leftWheel,rightWheel}, WheeledChassis.TYPE_DIFFERENTIAL);
+	 botPilot= new MovePilot(chassis);
+ }
  
 public void driveRoom()
 {
@@ -56,11 +70,20 @@ public void driveRoom()
 	{
 		botPilot.travel(254.00);
 	}
+
+}
 	
 	private void displayMessage()
 	{
 		LCD.drawString(botMessage,xPosition,yPosition);
-		
+		Delay.msDelay(waitTime);
+		}
+        
+	private void displayMessage(String message)
+	{
+		LCD.drawString(message, xPosition, yPosition);
+		Delay.msDelay(waitTime);
 	}
+
 }
-}
+
