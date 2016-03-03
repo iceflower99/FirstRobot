@@ -53,7 +53,7 @@ public class EV3Bot
  private void setupPilot()
  {
 	 Wheel leftWheel= WheeledChassis.modelWheel(Motor.A, 43.3).offset(-72);
-	 Wheel rightWheel=WheeledChassis.modelWheel(Motor.B, 43.3).offset(-72);
+	 Wheel rightWheel=WheeledChassis.modelWheel(Motor.B, 43.3).offset(72);
 	 WheeledChassis  chassis = new WheeledChassis(new Wheel[]{leftWheel,rightWheel}, WheeledChassis.TYPE_DIFFERENTIAL);
 	 botPilot= new MovePilot(chassis);
  }
@@ -64,14 +64,18 @@ public void driveRoom()
 	distanceSensor.fetchSample(ultrasonicSamples,0);
 	if(ultrasonicSamples[0]<5)
 	{
-		botPilot.travel(20.00);
+		displayMessage("Short Drive");
+		driveShort();
 	}
 	else
 	{
-		botPilot.travel(254.00);
+		displayMessage("Long Drive");
+		driveLong();
+		}
+	displayMessage("I am at the other door!!!");
 	}
 
-}
+
 	
 	private void displayMessage()
 	{
@@ -84,6 +88,16 @@ public void driveRoom()
 		LCD.drawString(message, xPosition, yPosition);
 		Delay.msDelay(waitTime);
 	}
-
+	
+	private void driveShort()
+	{
+		
+	}
+	
+	private void driveLong()
+	{
+		
+	}
+ 
 }
 
