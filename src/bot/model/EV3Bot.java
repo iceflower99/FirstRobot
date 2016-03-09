@@ -91,12 +91,24 @@ public void driveRoom()
 	
 	private void driveShort()
 	{
-		
+		botPilot.travel(762);
+		botPilot.rotate(90);
+		botPilot.travel(2540);
+		botPilot.rotate(-90);
+		botPilot.travel(4064);
+		botPilot.rotate(90);
+		botPilot.travel(4064);
 	}
 	
 	private void driveLong()
 	{
-		
+		botPilot.travel(4064);
+		botPilot.rotate(-90);
+		botPilot.travel(4064);
+		botPilot.rotate(90);
+		botPilot.travel(2540);
+		botPilot.rotate(-90);
+		botPilot.travel(762);
 	}
  
 }
